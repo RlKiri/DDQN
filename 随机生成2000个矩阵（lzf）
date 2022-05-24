@@ -1,0 +1,36 @@
+from torch.utils.data import Dataset, DataLoader
+import torch
+from tqdm import tqdm
+import numpy as np
+
+
+#下面这个类是老师的那个代码里面拿出来的
+#作用是生成时间矩阵，每个时间为1到100之间的随机数
+
+class PFSPDataset(Dataset):
+    def __init__(self,num_machines,num_jobs,num_samples,random_seed=111):
+        super(PFSPDataset,self).__init__()
+        torch.manual_seed(random_seed)
+        self.data_set=[]
+        for l in tqdm(range(num_samples)):
+            x=np.random.randint(1,100,size=(num_machines,num_jobs))
+            x=torch.Tensor(x)
+            self.data_set.append(x)
+        self.size=len(self.data_set)
+    def __len__(self):
+        return self.size
+        
+    def __getitem__(self,idx):
+        return self.data_set[idx]
+        
+#类的用法
+train_dataset = PFSPDataset(2,6,10)
+train_loader = DataLoader(train_dataset, batch_size=10, \
+           shuffle=True,pin_memory=True)
+data = enumerate(train_loader)
+
+
+#最后把数据打印出来
+for index, key in enumerate(train_loader):
+    print(index)
+    print(key)
