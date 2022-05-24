@@ -23,19 +23,19 @@ class PFSPDataset(Dataset):
     def __getitem__(self,idx):
         return self.data_set[idx]
         
-#类的用法
-train_dataset = PFSPDataset(2,6,20)
-train_loader = DataLoader(train_dataset, batch_size=10, \
+#类的用法例子：2个工件，6个机器，20个矩阵，10个矩阵一批
+test_dataset = PFSPDataset(2,6,20)
+test_loader = DataLoader(test_dataset, batch_size=10, \
            shuffle=True,pin_memory=True)
-data = enumerate(train_loader)
 
 
 #最后把数据打印出来
-for index, key in enumerate(train_loader):
+for index, key in enumerate(test_loader):
     print(index)
     print(key)
 
 
-
-
-#修改
+#生成2048个矩阵，一个batch128个时间矩阵，共有16个batch,一个batch为1个（2*6*128）的tensor
+train_dataset = PFSPDataset(2,6,2048)
+train_loader = DataLoader(train_dataset, batch_size=128, \
+           shuffle=True,pin_memory=True)
