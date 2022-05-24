@@ -24,7 +24,7 @@ class PFSPDataset(Dataset):
         return self.data_set[idx]
         
 #类的用法
-train_dataset = PFSPDataset(2,6,10)
+train_dataset = PFSPDataset(2,6,20)
 train_loader = DataLoader(train_dataset, batch_size=10, \
            shuffle=True,pin_memory=True)
 data = enumerate(train_loader)
