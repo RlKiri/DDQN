@@ -3,7 +3,7 @@ import torch
 from tqdm import tqdm
 import numpy as np
 
-
+#第一部分：生成2000个时间矩阵
 #下面这个类是老师的那个代码里面拿出来的
 #作用是生成时间矩阵，每个时间为1到100之间的随机数
 
@@ -23,7 +23,7 @@ class PFSPDataset(Dataset):
     def __getitem__(self,idx):
         return self.data_set[idx]
         
-#类的用法例子：2个工件，6个机器，20个矩阵，10个矩阵一批
+#例子：2个工件，6个机器，20个矩阵，10个矩阵一批
 test_dataset = PFSPDataset(2,6,20)
 test_loader = DataLoader(test_dataset, batch_size=10, \
            shuffle=True,pin_memory=True)
@@ -39,3 +39,40 @@ for index, key in enumerate(test_loader):
 train_dataset = PFSPDataset(2,6,2048)
 train_loader = DataLoader(train_dataset, batch_size=128, \
            shuffle=True,pin_memory=True)
+
+
+
+
+
+
+
+
+#第二部分：从中选择128个
+def random_choice(train_loader,batch_size,sample_number):
+
+#batch_size = 2048, sample_number = 128
+
+    episode_data = []
+    for batch_id, sample_batch in enumerate(train_loader):
+    
+
+#data里面只有1个二维向量，0和2048个矩阵,但只有用for循环才能调用到里面的数据
+#从其中随机选择128个矩阵
+
+        choice = random.sample(range(0,batch_size),sample_number)
+        for x in choice:
+        
+
+
+            episode_data.append(sample_batch[x])
+     
+    return episode_data
+    
+    
+    
+    
+#例子：从2048个矩阵中抽出来128个
+#train_loader为上面第一部分输出的
+a = random_choice(train_loader,2048128)
+#print(len(a))
+#print(a)
