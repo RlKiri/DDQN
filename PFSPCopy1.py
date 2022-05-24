@@ -246,10 +246,14 @@ class PFSP_Env:
         Gap=self.Gap()
         self.s3()
         u=self.U()
-        if self.u == 0:
-            r = 0
-        else:
-            r=u-self.u
+
+            
+
+        r=u-self.u
+
+        
+        
+        
         self.u=u
         return self.s,r,done
 
