@@ -34,3 +34,8 @@ data = enumerate(train_loader)
 for index, key in enumerate(train_loader):
     print(index)
     print(key)
+
+
+
+
+#修改
