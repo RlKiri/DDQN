@@ -89,7 +89,7 @@ def TrainModel(Agent,env,batch_size,episode,train_loader):
             #输入：state
             #输出：各个action的动作值
             
-            #需要加10%的随机选择这个功能吗
+            #需要加10%的随机选择这个功能吗 需要添加10% 可以让epsilon随着episode去改变
             
             action = torch.max(action_value, 1)[1].data.cpu().numpy()[0]
             action_chosen.append(action)
@@ -125,7 +125,7 @@ def TrainModel(Agent,env,batch_size,episode,train_loader):
         
         
         #当128个action，reward，next_state出来之后，到函数3
-        #函数3：learn函数（其中有PER_error函数)
+        #函数3：learn函数（其中有PER_error函数）
         #注：原来的learn函数是从memory中sample出来state,action，reward，next_state的
         #改为
         #输入：128个state,action，reward，next_state
