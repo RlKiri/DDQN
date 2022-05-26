@@ -113,7 +113,8 @@ def TrainModel(Agent,env,batch_size,episode,train_loader):
             done = done_or_not0[5]
                 
             #本来要存储memory的，现在不用了
-            #Agent.store_transition(state, action, reward, next_state)
+            #感觉还是要的
+            Agent.store_transition(state, action, reward, next_state)
             #ep_reward += reward
             
             reward128.append(reward)
