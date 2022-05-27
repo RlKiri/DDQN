@@ -90,7 +90,7 @@ def learn(self):
         #6.将qnext中的已经选过的动作令为0，原因比较复杂，在组会上解释
         for memory_index in range(len(batch_next_state)):
             
-            for job_index in range(len(q_next[memory_index])): #对于每一个memory中的next_state中的第二个矩阵，哪一行为0代表已经被选过
+            for job_index in range(len(q_next[memory_index])): #对于每一个memory中的next_state中的第一个矩阵，哪一行为0代表已经被选过
                 
                 if sum(batch_next_state[memory_index][0][job_index]) == 0:
 
