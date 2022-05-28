@@ -1,2 +1,6 @@
 import numpy as py
 import torch
+
+
+def choose_action(self,state):
+    
