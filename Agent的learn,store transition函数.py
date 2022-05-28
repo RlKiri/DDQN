@@ -39,7 +39,7 @@ def learn(self):
         #2.从memory中抽出batch_size（128个）的memory
         if self.memory_counter > self.memory_size:   #说明记忆库已经存满，可以从记忆库任意位置收取
             sample_index = np.random.choice(self.memory_size, size=self.BATCH_SIZE)
-        else:   #记忆库还没有存满，从现有的存储记忆提取
+        else:   #记忆库未满，只能从已经储存了的记忆中进行选择
             sample_index = np.random.choice(self.memory_counter, size=self.BATCH_SIZE)
         
         batch = []
